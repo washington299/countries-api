@@ -20,6 +20,8 @@
     "rules": {
         "react/jsx-filename-extension": "off",
         "react/jsx-indent": "off",
-        "no-tabs": "off"
+        "react/prefer-stateless-function": "off",
+        "no-tabs": "off",
+        "indent": ["error", "tab"]
     }
 }
