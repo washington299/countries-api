@@ -1,12 +1,12 @@
 import React from 'react';
-import GlobalStyles from './globalStyles';
+import GlobalStyles from './styles/globalStyles';
 
 class App extends React.Component {
 	render() {
 		return (
 			<>
 				<GlobalStyles />
-				<h1>Hello World!</h1>
+				<h1 style={{ background: '#858585' }}>Hello World!</h1>
 			</>
 		);
 	}
