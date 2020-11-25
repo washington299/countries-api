@@ -9,6 +9,8 @@ export default createGlobalStyle`
 
 	body {
 		font-family: 'Nunito Sans', sans-serif;
+		background-color: ${(props) => props.theme.background};
+		color: ${(props) => props.theme.text};
 	}
 
 	:root {
