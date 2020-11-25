@@ -1,12 +1,14 @@
 import React from 'react';
 import GlobalStyles from './styles/globalStyles';
 
+import Routers from './routes';
+
 class App extends React.Component {
 	render() {
 		return (
 			<>
 				<GlobalStyles />
-				<h1 style={{ background: '#858585' }}>Hello World!</h1>
+				<Routers />
 			</>
 		);
 	}
