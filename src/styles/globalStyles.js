@@ -21,4 +21,15 @@ export default createGlobalStyle`
 		--font-weight-semi-bold: 600;
 		--font-weight-extra-bold: 800;
 	}
+
+	.wrapper {
+		padding: 0 15px;
+
+		@media screen and (min-width: 768px) {
+			padding: 0 30px;
+		}
+		@media screen and (min-width: 1080px) {
+			padding: 0 50px;
+		}
+	}
 `;

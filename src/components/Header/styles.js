@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export default styled.header`
+export default styled.header.attrs(() => ({
+	className: 'wrapper',
+}))`
 	height: 80px;
 	display: flex;
 	align-items: center;
@@ -10,5 +12,8 @@ export default styled.header`
 
 export const Title = styled.strong`
 	font-size: var(--font-size-small);
-	padding-left: 15px;
+
+	@media screen and (min-width: 768px) {
+		font-size: 18px;
+	}
 `;
