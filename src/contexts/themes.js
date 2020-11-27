@@ -2,8 +2,10 @@ import { createContext } from 'react';
 
 import themes from '../styles/themes';
 
+const theme = localStorage.getItem('theme');
+
 const ThemeContext = createContext({
-	theme: themes.light,
+	theme: theme === 'dark' ? themes.dark : themes.light,
 	toggleTheme: () => {},
 });
 

@@ -18,10 +18,16 @@ class App extends React.Component {
 						? themes.light
 						: themes.dark,
 			}));
+
+			if (this.state.theme === themes.dark) {
+				localStorage.setItem('theme', 'light');
+			} else {
+				localStorage.setItem('theme', 'dark');
+			}
 		};
 
 		this.state = {
-			theme: themes.light,
+			theme: localStorage.getItem('theme') === 'light' ? themes.light : themes.dark,
 			toggleTheme: this.toggleTheme,
 		};
 	}
@@ -30,7 +36,7 @@ class App extends React.Component {
 		const { state } = this;
 
 		return (
-			<ThemeContext.Provider value={this.state}>
+			<ThemeContext.Provider value={state}>
 				<ThemeProvider theme={state.theme}>
 					<GlobalStyles />
 					<Routers />

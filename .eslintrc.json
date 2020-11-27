@@ -22,6 +22,7 @@
         "react/jsx-indent": "off",
         "react/prefer-stateless-function": "off",
         "react/no-unused-state": "off",
+        "react/destructuring-assignment": "off",
         "no-tabs": "off",
         "indent": ["error", "tab"]
     }
