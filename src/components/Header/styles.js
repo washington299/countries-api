@@ -8,6 +8,7 @@ export default styled.header.attrs(() => ({
 	align-items: center;
 	justify-content: space-between;
 	background-color: ${(props) => props.theme.element};
+	box-shadow: 0px 2px 2px ${(props) => props.theme.shadow};
 `;
 
 export const Title = styled.strong`
