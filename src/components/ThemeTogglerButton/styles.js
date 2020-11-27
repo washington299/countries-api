@@ -10,8 +10,10 @@ export default styled.div`
 	&:hover {
 		text-decoration: underline;
 	}
-
 	svg {
 		margin-right: 5px;
+	}
+	span {
+		font-weight: var(--font-weight-semi-bold);
 	}
 `;
