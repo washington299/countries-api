@@ -38,7 +38,7 @@ class Header extends React.Component {
 						</>
 					) : (
 						<>
-							<WbSunny />
+							<WbSunny style={{ color: '#FECE00' }} />
 							<span>Light mode</span>
 						</>
 					)}

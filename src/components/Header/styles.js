@@ -18,6 +18,11 @@ export const ThemeSwitcher = styled.div`
 	align-items: center;
 	font-size: var(--font-size-small);
 	padding-right: 15px;
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
 
 	svg {
 		margin-right: 5px;
