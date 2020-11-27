@@ -1,7 +1,9 @@
+/* eslint-disable react/no-unused-state */
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import theme from './styles/themes';
+import { ThemeContext } from './contexts/themes';
+import themes from './styles/themes';
 
 import GlobalStyles from './styles/globalStyles';
 import Routers from './routes';
@@ -9,25 +11,31 @@ import Routers from './routes';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { darkMode: false };
-	}
+		this.toggleTheme = () => {
+			this.setState((state) => ({
+				theme:
+					state.theme === themes.dark
+						? themes.light
+						: themes.dark,
+			}));
+		};
 
-	componentDidMount() {
-		if (localStorage.getItem('theme') === 'dark') {
-			this.setState({ darkMode: true });
-			return;
-		}
-		this.setState({ darkMode: false });
+		this.state = {
+			theme: themes.light,
+			toggleTheme: this.toggleTheme,
+		};
 	}
 
 	render() {
 		const { state } = this;
 
 		return (
-			<ThemeProvider theme={state.darkMode ? theme.dark : theme.light}>
-				<GlobalStyles />
-				<Routers />
-			</ThemeProvider>
+			<ThemeContext.Provider value={this.state}>
+				<ThemeProvider theme={state.theme}>
+					<GlobalStyles />
+					<Routers />
+				</ThemeProvider>
+			</ThemeContext.Provider>
 		);
 	}
 }
