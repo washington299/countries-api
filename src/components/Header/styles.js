@@ -12,19 +12,3 @@ export const Title = styled.strong`
 	font-size: var(--font-size-small);
 	padding-left: 15px;
 `;
-
-export const ThemeSwitcher = styled.div`
-	display: flex;
-	align-items: center;
-	font-size: var(--font-size-small);
-	padding-right: 15px;
-	cursor: pointer;
-
-	&:hover {
-		text-decoration: underline;
-	}
-
-	svg {
-		margin-right: 5px;
-	}
-`;

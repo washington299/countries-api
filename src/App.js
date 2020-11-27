@@ -1,12 +1,12 @@
-/* eslint-disable react/no-unused-state */
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { ThemeContext } from './contexts/themes';
+import Routers from './routes';
+
+import ThemeContext from './contexts/themes';
 import themes from './styles/themes';
 
 import GlobalStyles from './styles/globalStyles';
-import Routers from './routes';
 
 class App extends React.Component {
 	constructor(props) {

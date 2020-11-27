@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeTogglerButton } from '../../contexts/themes';
+import ThemeTogglerButton from '../ThemeTogglerButton';
 
 import Container, { Title } from './styles';
 
