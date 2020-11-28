@@ -9,6 +9,10 @@ export const Filters = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	margin: 30px 0;
+
+	@media screen and (min-width: 768px) {
+		flex-direction: row;
+	}
 `;
 
 export const SearchField = styled.div`
@@ -48,6 +52,10 @@ export const RegionField = styled.div`
 	width: 200px;
 	margin-top: 20px;
 	position: relative;
+
+	@media screen and (min-width: 768px) {
+		margin-top: 0;
+	}
 `;
 
 export const Select = styled.div`
