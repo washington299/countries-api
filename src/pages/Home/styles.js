@@ -54,8 +54,8 @@ export const Select = styled.div`
 	width: 100%;
 	height: 40px;
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
+	padding: 0 20px;
 	background-color: ${(props) => props.theme.element};
 	color: ${(props) => props.theme.text};
 	border: none;
@@ -66,6 +66,8 @@ export const Select = styled.div`
 	svg {
 		font-size: 20px;
 		vertical-align: middle;
+		position: absolute;
+		right: 20px;
 	}
 `;
 
