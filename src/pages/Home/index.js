@@ -49,6 +49,12 @@ class Home extends React.Component {
 						</Select>
 						{!this.state.hide && (
 							<OptionsBox>
+								<Option
+									style={{ marginBottom: 10 }}
+									onClick={this.changeOption}
+								>
+									Filter by Region
+								</Option>
 								<Option onClick={this.changeOption}>Africa</Option>
 								<Option onClick={this.changeOption}>America</Option>
 								<Option onClick={this.changeOption}>Asia</Option>
