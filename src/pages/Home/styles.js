@@ -46,7 +46,55 @@ export const Input = styled.input.attrs(() => ({
 
 export const RegionField = styled.div`
 	width: 200px;
-	height: 40px;
-	background-color: ${(props) => props.theme.element};
 	margin-top: 20px;
+	position: relative;
+`;
+
+export const Select = styled.div`
+	width: 100%;
+	height: 40px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: ${(props) => props.theme.element};
+	color: ${(props) => props.theme.text};
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px ${(props) => props.theme.shadow};
+	cursor: pointer;
+
+	svg {
+		font-size: 20px;
+		vertical-align: middle;
+	}
+`;
+
+export const RegionDefaultText = styled.span`
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-semi-bold);
+`;
+
+export const OptionsBox = styled.div`
+	width: 100%;
+	height: auto;
+	margin-top: 4px;
+	padding: 10px 0;
+	background-color: ${(props) => props.theme.element};
+	color: ${(props) => props.theme.text};
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px ${(props) => props.theme.shadow};
+	position: absolute;
+`;
+
+export const Option = styled.div`
+	width: 100%;
+	padding: 5px 20px;
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-semi-bold);
+	cursor: pointer;
+
+	:hover {
+		background-color: ${(props) => props.theme.background};
+	}
 `;

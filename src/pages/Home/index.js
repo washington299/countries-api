@@ -1,8 +1,8 @@
 import React from 'react';
-import { Search } from '@material-ui/icons';
+import { Search, ExpandMore } from '@material-ui/icons';
 
 import Container, {
-	Filters, SearchField, RegionField, Input,
+	Filters, SearchField, RegionField, Input, Select, RegionDefaultText, OptionsBox, Option,
 } from './styles';
 
 class Home extends React.Component {
@@ -14,7 +14,19 @@ class Home extends React.Component {
 						<Search />
 						<Input />
 					</SearchField>
-					<RegionField>Region</RegionField>
+					<RegionField>
+						<Select>
+							<RegionDefaultText>Filter by Region</RegionDefaultText>
+							<ExpandMore />
+						</Select>
+						<OptionsBox>
+							<Option>Africa</Option>
+							<Option>America</Option>
+							<Option>Asia</Option>
+							<Option>Europe</Option>
+							<Option>Oceania</Option>
+						</OptionsBox>
+					</RegionField>
 				</Filters>
 			</Container>
 		);
