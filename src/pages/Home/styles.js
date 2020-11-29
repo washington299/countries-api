@@ -113,14 +113,4 @@ export const Main = styled.main`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 50px;
-  background-color: #fff;
-  color: #444;
-`;
-
-export const Article = styled.article`
-	background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
 `;

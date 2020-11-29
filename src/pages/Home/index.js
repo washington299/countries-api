@@ -1,6 +1,8 @@
 import React from 'react';
 import { Search, ExpandMore } from '@material-ui/icons';
 
+import Country from '../../components/Country';
+
 import Container, {
 	Filters,
 	SearchField,
@@ -11,7 +13,6 @@ import Container, {
 	OptionsBox,
 	Option,
 	Main,
-	Article,
 } from './styles';
 
 class Home extends React.Component {
@@ -67,14 +68,14 @@ class Home extends React.Component {
 					</RegionField>
 				</Filters>
 				<Main>
-					<Article>a</Article>
-					<Article>b</Article>
-					<Article>c</Article>
-					<Article>d</Article>
-					<Article>e</Article>
-					<Article>f</Article>
-					<Article>g</Article>
-					<Article>h</Article>
+					<Country />
+					<Country />
+					<Country />
+					<Country />
+					<Country />
+					<Country />
+					<Country />
+					<Country />
 				</Main>
 			</Container>
 		);
