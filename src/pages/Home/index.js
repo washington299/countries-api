@@ -1,6 +1,8 @@
 import React from 'react';
 import { Search, ExpandMore } from '@material-ui/icons';
 
+import getAllCountries from '../../services/api';
+
 import Country from '../../components/Country';
 
 import Container, {
@@ -21,9 +23,15 @@ class Home extends React.Component {
 		this.state = {
 			hide: true,
 			text: 'Filter by Region',
+			countries: [],
 		};
 		this.handleClick = this.handleClick.bind(this);
 		this.changeOption = this.changeOption.bind(this);
+	}
+
+	async componentDidMount() {
+		const res = await getAllCountries('all');
+		this.setState({ countries: res.data });
 	}
 
 	handleClick() {
@@ -68,14 +76,16 @@ class Home extends React.Component {
 					</RegionField>
 				</Filters>
 				<Main>
-					<Country />
-					<Country />
-					<Country />
-					<Country />
-					<Country />
-					<Country />
-					<Country />
-					<Country />
+					{this.state.countries.map((country) => (
+						<Country
+							key={country.name}
+							flag={country.flag}
+							name={country.name}
+							population={country.population}
+							region={country.region}
+							capital={country.capital}
+						/>
+					))}
 				</Main>
 			</Container>
 		);

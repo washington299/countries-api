@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Container, {
 	Flag, InfoBox, Name, InfoArea, Subject, Text,
@@ -8,24 +9,24 @@ class Country extends React.Component {
 	render() {
 		return (
 			<Container>
-				<Flag />
+				<Flag src={this.props.flag} alt={this.props.name} />
 				<InfoBox>
-					<Name>Brazil</Name>
+					<Name>{this.props.name}</Name>
 					<InfoArea>
 						<p>
 							<Subject>Population:</Subject>
 							{' '}
-							<Text>200.000.000</Text>
+							<Text>{this.props.population}</Text>
 						</p>
 						<p>
 							<Subject>Region:</Subject>
 							{' '}
-							<Text>America</Text>
+							<Text>{this.props.region}</Text>
 						</p>
 						<p>
 							<Subject>Capital:</Subject>
 							{' '}
-							<Text>Brasilia</Text>
+							<Text>{this.props.capital}</Text>
 						</p>
 					</InfoArea>
 				</InfoBox>
@@ -33,5 +34,13 @@ class Country extends React.Component {
 		);
 	}
 }
+
+Country.propTypes = {
+	flag: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	population: PropTypes.number.isRequired,
+	region: PropTypes.string.isRequired,
+	capital: PropTypes.string.isRequired,
+};
 
 export default Country;
