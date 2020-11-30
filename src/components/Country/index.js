@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import numberFormat from '../../helpers/numberFormat';
+
 import Container, {
 	Flag, InfoBox, Name, InfoArea, Subject, Text,
 } from './styles';
@@ -16,7 +18,7 @@ class Country extends React.Component {
 						<p>
 							<Subject>Population:</Subject>
 							{' '}
-							<Text>{this.props.population}</Text>
+							<Text>{numberFormat(this.props.population)}</Text>
 						</p>
 						<p>
 							<Subject>Region:</Subject>
