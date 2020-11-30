@@ -9,7 +9,7 @@ export default styled.article`
 
 export const Flag = styled.img`
 	width: 100%;
-	height: 220px;
+	height: 180px;
 	background-color: yellow;
 	border: none;
 	border-radius: 5px;
