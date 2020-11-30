@@ -24,6 +24,7 @@ class Home extends React.Component {
 			hide: true,
 			text: 'Filter by Region',
 			countries: [],
+			loading: true,
 		};
 		this.handleClick = this.handleClick.bind(this);
 		this.changeOption = this.changeOption.bind(this);
@@ -31,7 +32,10 @@ class Home extends React.Component {
 
 	async componentDidMount() {
 		const res = await getAllCountries('all');
-		this.setState({ countries: res.data });
+		this.setState({
+			countries: res.data,
+			loading: false,
+		});
 	}
 
 	handleClick() {
@@ -76,6 +80,9 @@ class Home extends React.Component {
 					</RegionField>
 				</Filters>
 				<Main>
+					{this.state.loading && (
+						<span style={{ textAlign: 'center' }}>Loading...</span>
+					)}
 					{this.state.countries.map((country) => (
 						<Country
 							key={country.name}
