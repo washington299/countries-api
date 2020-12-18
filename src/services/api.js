@@ -4,8 +4,17 @@ const api = axios.create({
 	baseURL: 'https://restcountries.eu/rest/v2',
 });
 
-export default async (endpoint) => {
-	const res = await api.get(endpoint);
+const getAllContries = async () => {
+	const res = await api.get('all');
 
+	return res;
+};
+
+export default async (currentPage, countriesPerPage) => {
+	const startQuantityFrom = (currentPage - 1) * countriesPerPage;
+	const getQuantityUntil = currentPage * 12;
+
+	const countries = await getAllContries();
+	const res = countries.data.slice(startQuantityFrom, getQuantityUntil);
 	return res;
 };
