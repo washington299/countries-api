@@ -114,3 +114,25 @@ export const Main = styled.main`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 50px;
 `;
+
+export const PaginationArea = styled.div.attrs(() => ({
+	className: 'wrapper',
+}))`
+	margin: 30px 0;
+	display: flex;
+	justify-content: center;
+`;
+
+export const PageNumber = styled.a`
+	padding: 6px 12px;
+	font-size: 12px;
+	color: ${(props) => props.theme.text};
+	background-color: ${(props) => props.theme.background};
+	border: 1px solid #AAA;
+	cursor: pointer;
+
+	:hover {
+		background-color: ${(props) => props.theme.background};
+		border: none;
+	}
+`;
