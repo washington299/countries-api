@@ -24,7 +24,10 @@
         "react/no-unused-state": "off",
         "react/destructuring-assignment": "off",
         "react/jsx-indent-props": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/forbid-prop-types": "off",
         "no-tabs": "off",
-        "indent": ["error", "tab"]
+        "indent": ["error", "tab"],
+        "radix": "off"
     }
 }
