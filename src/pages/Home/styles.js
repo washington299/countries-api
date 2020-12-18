@@ -4,12 +4,6 @@ export default styled.section.attrs(() => ({
 	className: 'wrapper',
 }))``;
 
-export const Main = styled.main`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 50px;
-`;
-
 export const PaginationArea = styled.div.attrs(() => ({
 	className: 'wrapper',
 }))`

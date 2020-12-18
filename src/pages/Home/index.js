@@ -6,16 +6,14 @@ import getCountries from '../../services/api';
 import getQueryStringPage from '../../helpers/getQueryStringPage';
 
 import FilterArea from './FilterArea';
-import Country from '../../components/Country';
+import Content from './Content';
 
-import Container, { Main, PaginationArea, PageNumber } from './styles';
+import Container, { PaginationArea, PageNumber } from './styles';
 
 class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			countries: [],
-			loading: true,
 			pagesQuantity: null,
 			pages: [],
 		};
@@ -24,17 +22,13 @@ class Home extends React.Component {
 	async componentDidMount() {
 		const countriesPerPage = 12;
 		const currentPage = getQueryStringPage(this.props.location.search);
-		const { res: countries, pagesQuantity } = await getCountries(currentPage, countriesPerPage);
+		const { pagesQuantity } = await getCountries(currentPage, countriesPerPage);
 
 		for (let i = 1; i <= 6; i += 1) {
 			this.state.pages.push(i);
 		}
 
 		this.setState({ pagesQuantity: Math.ceil(pagesQuantity / countriesPerPage) });
-		this.setState({
-			countries,
-			loading: false,
-		});
 	}
 
 	render() {
@@ -43,21 +37,7 @@ class Home extends React.Component {
 		return (
 			<Container>
 				<FilterArea />
-				<Main>
-					{this.state.loading && (
-						<span style={{ textAlign: 'center' }}>Loading...</span>
-					)}
-					{this.state.countries.map((country) => (
-						<Country
-							key={country.name}
-							flag={country.flag}
-							name={country.name}
-							population={country.population}
-							region={country.region}
-							capital={country.capital}
-						/>
-					))}
-				</Main>
+				<Content />
 				<PaginationArea>
 					<PageNumber
 						href={`?page=${currentPage - 1}`}
