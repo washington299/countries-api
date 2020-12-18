@@ -30,7 +30,6 @@ class Home extends React.Component {
 			text: 'Filter by Region',
 			countries: [],
 			loading: true,
-			currentPage: 1,
 			pagesQuantity: null,
 			pages: [],
 		};
@@ -41,13 +40,13 @@ class Home extends React.Component {
 	async componentDidMount() {
 		const countriesPerPage = 12;
 		const currentPage = getQueryStringPage(this.props.location.search);
-		const countries = await getCountries(currentPage, countriesPerPage);
+		const { res: countries, pagesQuantity } = await getCountries(currentPage, countriesPerPage);
 
 		for (let i = 1; i <= 6; i += 1) {
 			this.state.pages.push(i);
 		}
 
-		this.setState({ pagesQuantity: Math.ceil(countries.length / countriesPerPage) });
+		this.setState({ pagesQuantity: Math.ceil(pagesQuantity / countriesPerPage) });
 		this.setState({
 			countries,
 			loading: false,
@@ -113,7 +112,12 @@ class Home extends React.Component {
 					))}
 				</Main>
 				<PaginationArea>
-					<PageNumber href={`?page=${currentPage - 1}`}>&laquo;</PageNumber>
+					<PageNumber
+						href={`?page=${currentPage - 1}`}
+						style={currentPage === 1 ? { pointerEvents: 'none' } : {}}
+					>
+						&laquo;
+					</PageNumber>
 					{this.state.pages.map((page) => (
 						<PageNumber
 							key={page}
@@ -123,7 +127,12 @@ class Home extends React.Component {
 							{page}
 						</PageNumber>
 					))}
-					<PageNumber href={`?page=${currentPage + 1}`}>&raquo;</PageNumber>
+					<PageNumber
+						href={`?page=${currentPage + 1}`}
+						style={currentPage === this.state.pagesQuantity ? { pointerEvents: 'none' } : {}}
+					>
+						&raquo;
+					</PageNumber>
 				</PaginationArea>
 			</Container>
 		);
