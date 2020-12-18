@@ -1,7 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Search, ExpandMore } from '@material-ui/icons';
 
-import getAllCountries from '../../services/api';
+import getCountries from '../../services/api';
+import getQueryStringPage from '../../helpers/getQueryStringPage';
 
 import Country from '../../components/Country';
 
@@ -15,6 +18,8 @@ import Container, {
 	OptionsBox,
 	Option,
 	Main,
+	PaginationArea,
+	PageNumber,
 } from './styles';
 
 class Home extends React.Component {
@@ -25,15 +30,26 @@ class Home extends React.Component {
 			text: 'Filter by Region',
 			countries: [],
 			loading: true,
+			currentPage: 1,
+			pagesQuantity: null,
+			pages: [],
 		};
 		this.handleClick = this.handleClick.bind(this);
 		this.changeOption = this.changeOption.bind(this);
 	}
 
 	async componentDidMount() {
-		const res = await getAllCountries('all');
+		const countriesPerPage = 12;
+		const currentPage = getQueryStringPage(this.props.location.search);
+		const countries = await getCountries(currentPage, countriesPerPage);
+
+		for (let i = 1; i <= 6; i += 1) {
+			this.state.pages.push(i);
+		}
+
+		this.setState({ pagesQuantity: Math.ceil(countries.length / countriesPerPage) });
 		this.setState({
-			countries: res.data,
+			countries,
 			loading: false,
 		});
 	}
@@ -50,6 +66,8 @@ class Home extends React.Component {
 	}
 
 	render() {
+		const currentPage = getQueryStringPage(this.props.location.search);
+
 		return (
 			<Container>
 				<Filters>
@@ -94,9 +112,26 @@ class Home extends React.Component {
 						/>
 					))}
 				</Main>
+				<PaginationArea>
+					<PageNumber href={`?page=${currentPage - 1}`}>&laquo;</PageNumber>
+					{this.state.pages.map((page) => (
+						<PageNumber
+							key={page}
+							active={page === currentPage}
+							href={`?page=${page}`}
+						>
+							{page}
+						</PageNumber>
+					))}
+					<PageNumber href={`?page=${currentPage + 1}`}>&raquo;</PageNumber>
+				</PaginationArea>
 			</Container>
 		);
 	}
 }
 
-export default Home;
+Home.propTypes = {
+	location: PropTypes.object.isRequired,
+};
+
+export default withRouter(Home);
