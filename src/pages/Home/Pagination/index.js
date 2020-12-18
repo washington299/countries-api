@@ -1,9 +1,7 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 import getCountries from '../../../services/api';
-import getQueryStringPage from '../../../helpers/getQueryStringPage';
 
 import Container, { PageNumber } from './styles';
 
@@ -18,8 +16,7 @@ class Pagination extends React.Component {
 
 	async componentDidMount() {
 		const countriesPerPage = 12;
-		const currentPage = getQueryStringPage(this.props.location.search);
-		const { pagesQuantity } = await getCountries(currentPage, countriesPerPage);
+		const { pagesQuantity } = await getCountries(this.props.currentPage, countriesPerPage);
 
 		for (let i = 1; i <= 6; i += 1) {
 			this.state.pages.push(i);
@@ -29,28 +26,26 @@ class Pagination extends React.Component {
 	}
 
 	render() {
-		const currentPage = getQueryStringPage(this.props.location.search);
-
 		return (
 			<Container>
 				<PageNumber
-					href={`?page=${currentPage - 1}`}
-					style={currentPage === 1 ? { pointerEvents: 'none' } : {}}
+					href={`?page=${this.props.currentPage - 1}`}
+					style={this.props.currentPage === 1 ? { pointerEvents: 'none' } : {}}
 				>
 					&laquo;
 				</PageNumber>
 				{this.state.pages.map((page) => (
 					<PageNumber
 						key={page}
-						active={page === currentPage}
+						active={page === this.props.currentPage}
 						href={`?page=${page}`}
 					>
 						{page}
 					</PageNumber>
 				))}
 				<PageNumber
-					href={`?page=${currentPage + 1}`}
-					style={currentPage === this.state.pagesQuantity ? { pointerEvents: 'none' } : {}}
+					href={`?page=${this.props.currentPage + 1}`}
+					style={this.props.currentPage === this.state.pagesQuantity ? { pointerEvents: 'none' } : {}}
 				>
 					&raquo;
 				</PageNumber>
@@ -60,7 +55,7 @@ class Pagination extends React.Component {
 }
 
 Pagination.propTypes = {
-	location: PropTypes.object.isRequired,
+	currentPage: propTypes.number.isRequired,
 };
 
-export default withRouter(Pagination);
+export default Pagination;

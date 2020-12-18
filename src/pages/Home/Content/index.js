@@ -1,9 +1,7 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 import getCountries from '../../../services/api';
-import getQueryStringPage from '../../../helpers/getQueryStringPage';
 
 import Country from '../../../components/Country';
 
@@ -20,8 +18,7 @@ class Content extends React.Component {
 
 	async componentDidMount() {
 		const countriesPerPage = 12;
-		const currentPage = getQueryStringPage(this.props.location.search);
-		const { res: countries } = await getCountries(currentPage, countriesPerPage);
+		const { res: countries } = await getCountries(this.props.currentPage, countriesPerPage);
 
 		this.setState({
 			countries,
@@ -51,7 +48,7 @@ class Content extends React.Component {
 }
 
 Content.propTypes = {
-	location: PropTypes.object.isRequired,
+	currentPage: propTypes.number.isRequired,
 };
 
-export default withRouter(Content);
+export default Content;
