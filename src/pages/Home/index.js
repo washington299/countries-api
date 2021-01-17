@@ -6,16 +6,12 @@ import Pagination from './Pagination';
 
 import Container from './styles';
 
-class Home extends React.Component {
-	render() {
-		return (
-			<Container>
-				<FilterArea />
-				<Content />
-				<Pagination />
-			</Container>
-		);
-	}
-}
+const Home = () => (
+	<Container>
+		<FilterArea />
+		<Content />
+		<Pagination />
+	</Container>
+);
 
 export default Home;
