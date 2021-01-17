@@ -1,48 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import numberFormat from '../../helpers/numberFormat';
 
 import Container, {
-	Flag, InfoBox, Name, InfoArea, Subject, Text,
+	Flag,
+	InfoBox,
+	Name,
+	InfoArea,
+	Subject,
+	Text,
 } from './styles';
 
-class Country extends React.Component {
-	render() {
-		return (
-			<Container>
-				<Flag src={this.props.flag} alt={this.props.name} />
-				<InfoBox>
-					<Name>{this.props.name}</Name>
-					<InfoArea>
-						<p>
-							<Subject>Population:</Subject>
-							{' '}
-							<Text>{numberFormat(this.props.population)}</Text>
-						</p>
-						<p>
-							<Subject>Region:</Subject>
-							{' '}
-							<Text>{this.props.region}</Text>
-						</p>
-						<p>
-							<Subject>Capital:</Subject>
-							{' '}
-							<Text>{this.props.capital}</Text>
-						</p>
-					</InfoArea>
-				</InfoBox>
-			</Container>
-		);
-	}
-}
-
-Country.propTypes = {
-	flag: PropTypes.string.isRequired,
-	name: PropTypes.string.isRequired,
-	population: PropTypes.number.isRequired,
-	region: PropTypes.string.isRequired,
-	capital: PropTypes.string.isRequired,
-};
+const Country = ({
+	flag, name, population, region, capital,
+}) => (
+	<Container>
+		<Flag src={flag} alt={name} />
+		<InfoBox>
+			<Name>{name}</Name>
+			<InfoArea>
+				<p>
+					<Subject>Population:</Subject>
+					{' '}
+					<Text>{numberFormat(population)}</Text>
+				</p>
+				<p>
+					<Subject>Region:</Subject>
+					{' '}
+					<Text>{region}</Text>
+				</p>
+				<p>
+					<Subject>Capital:</Subject>
+					{' '}
+					<Text>{capital}</Text>
+				</p>
+			</InfoArea>
+		</InfoBox>
+	</Container>
+);
 
 export default Country;
