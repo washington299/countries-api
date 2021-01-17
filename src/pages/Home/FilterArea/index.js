@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, ExpandMore } from '@material-ui/icons';
 
 import Container, {
@@ -11,59 +11,48 @@ import Container, {
 	Select,
 } from './styles';
 
-class FilterArea extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			hide: true,
-			text: 'Filter by Region',
-		};
-		this.handleClick = this.handleClick.bind(this);
-		this.changeOption = this.changeOption.bind(this);
+const FilterArea = () => {
+	const [hide, setHide] = useState(true);
+	const [text, setText] = useState('Filter by Region');
+
+	function handleClick() {
+		setHide(!hide);
 	}
 
-	handleClick() {
-		this.setState((state) => ({
-			hide: !state.hide,
-		}));
+	function changeOption(e) {
+		handleClick();
+		setText(e.target.innerHTML);
 	}
 
-	changeOption(e) {
-		this.handleClick();
-		this.setState({ text: e.target.innerHTML });
-	}
-
-	render() {
-		return (
-			<Container>
-				<SearchField>
-					<Search />
-					<Input />
-				</SearchField>
-				<RegionField>
-					<Select onClick={this.handleClick}>
-						<RegionDefaultText>{this.state.text}</RegionDefaultText>
-						<ExpandMore />
-					</Select>
-					{!this.state.hide && (
-						<OptionsBox>
-							<Option
-								style={{ marginBottom: 10 }}
-								onClick={this.changeOption}
-							>
-								Filter by Region
-							</Option>
-							<Option onClick={this.changeOption}>Africa</Option>
-							<Option onClick={this.changeOption}>America</Option>
-							<Option onClick={this.changeOption}>Asia</Option>
-							<Option onClick={this.changeOption}>Europe</Option>
-							<Option onClick={this.changeOption}>Oceania</Option>
-						</OptionsBox>
-					)}
-				</RegionField>
-			</Container>
-		);
-	}
-}
+	return (
+		<Container>
+			<SearchField>
+				<Search />
+				<Input />
+			</SearchField>
+			<RegionField>
+				<Select onClick={handleClick}>
+					<RegionDefaultText>{text}</RegionDefaultText>
+					<ExpandMore />
+				</Select>
+				{!hide && (
+					<OptionsBox>
+						<Option
+							style={{ marginBottom: 10 }}
+							onClick={changeOption}
+						>
+							Filter by Region
+						</Option>
+						<Option onClick={changeOption}>Africa</Option>
+						<Option onClick={changeOption}>America</Option>
+						<Option onClick={changeOption}>Asia</Option>
+						<Option onClick={changeOption}>Europe</Option>
+						<Option onClick={changeOption}>Oceania</Option>
+					</OptionsBox>
+				)}
+			</RegionField>
+		</Container>
+	);
+};
 
 export default FilterArea;
