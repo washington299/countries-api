@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import Routers from './routes';
@@ -8,42 +8,35 @@ import themes from './styles/themes';
 
 import GlobalStyles from './styles/globalStyles';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.toggleTheme = () => {
-			this.setState((state) => ({
-				theme:
-					state.theme === themes.dark
-						? themes.light
-						: themes.dark,
-			}));
+const App = () => {
+	const [theme, setTheme] = useState(themes.light);
 
-			if (this.state.theme === themes.dark) {
-				localStorage.setItem('theme', 'light');
-			} else {
-				localStorage.setItem('theme', 'dark');
-			}
-		};
+	function toggleTheme() {
+		setTheme(theme === themes.dark ? themes.light : themes.dark);
 
-		this.state = {
-			theme: localStorage.getItem('theme') === 'light' ? themes.light : themes.dark,
-			toggleTheme: this.toggleTheme,
-		};
+		if (theme === themes.dark) {
+			localStorage.setItem('theme', 'light');
+		} else {
+			localStorage.setItem('theme', 'dark');
+		}
 	}
 
-	render() {
-		const { state } = this;
-
-		return (
-			<ThemeContext.Provider value={state}>
-				<ThemeProvider theme={state.theme}>
-					<GlobalStyles />
-					<Routers />
-				</ThemeProvider>
-			</ThemeContext.Provider>
+	useEffect(() => {
+		setTheme(
+			localStorage.getItem('theme') === 'light'
+				? themes.light
+				: themes.dark,
 		);
-	}
-}
+	}, [theme]);
+
+	return (
+		<ThemeContext.Provider value={{ theme, toggleTheme }}>
+			<ThemeProvider theme={theme}>
+				<GlobalStyles />
+				<Routers />
+			</ThemeProvider>
+		</ThemeContext.Provider>
+	);
+};
 
 export default App;
