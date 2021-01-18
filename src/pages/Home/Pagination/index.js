@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import getCountries from '../../../services/api';
 
-import Container, { PageNumber } from './styles';
+import Container from './styles';
 
 const Pagination = () => {
 	const [pagesQuantity, setPagesQuantity] = useState(null);
-	const pages = [];
+	const pages = [1, 2, 3, 4, 5, 6];
 	const currentPage = 1;
 
 	useEffect(() => {
 		async function getCountriesFromApi() {
 			const countriesPerPage = 12;
-			const { pagesQuantity: pgQuantity } = await getCountries(1, countriesPerPage);
-
-			for (let i = 1; i <= 6; i += 1) {
-				pages.push(i);
-			}
+			const { pagesQuantity: pgQuantity } = await getCountries(currentPage, countriesPerPage);
 
 			setPagesQuantity(Math.ceil(pgQuantity / countriesPerPage));
 		}
@@ -25,27 +22,29 @@ const Pagination = () => {
 
 	return (
 		<Container>
-			<PageNumber
-				href={`?page=${currentPage - 1}`}
+			<Link
+				to={`?page=${currentPage - 1}`}
 				style={currentPage === 1 ? { pointerEvents: 'none' } : {}}
 			>
-				&laquo;
-			</PageNumber>
+				prev
+			</Link>
+
 			{pages.map((page) => (
-				<PageNumber
+				<Link
 					key={page}
-					active={page === currentPage}
-					href={`?page=${page}`}
+					to={`?page=${page}`}
+					active={`${page === currentPage}`}
 				>
 					{page}
-				</PageNumber>
+				</Link>
 			))}
-			<PageNumber
-				href={`?page=${currentPage + 1}`}
-				style={currentPage === pagesQuantity ? { pointerEvents: 'none' } : {}}
+
+			<Link
+				to={`?page=${currentPage + 1}`}
+				disabled={currentPage === pagesQuantity ? { pointerEvents: 'none' } : {}}
 			>
-				&raquo;
-			</PageNumber>
+				next
+			</Link>
 		</Container>
 	);
 };
