@@ -6,20 +6,20 @@ import Country from '../../../components/Country';
 
 import Container from './styles';
 
-const Content = () => {
+const Content = ({ currentPage }) => {
 	const [countries, setCountries] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		async function getCountriesFromApi() {
 			const countriesPerPage = 12;
-			const { res } = await getCountries(1, countriesPerPage);
+			const { res } = await getCountries(currentPage, countriesPerPage);
 
 			setCountries(res);
 			setLoading(false);
 		}
 		getCountriesFromApi();
-	}, []);
+	}, [currentPage]);
 
 	return (
 		<Container>

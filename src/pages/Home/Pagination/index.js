@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import getCountries from '../../../services/api';
 
 import Container from './styles';
 
-const Pagination = () => {
-	const [pagesQuantity, setPagesQuantity] = useState(null);
+const Pagination = ({ currentPage }) => {
 	const pages = [1, 2, 3, 4, 5, 6];
-	const currentPage = 1;
+	let pagesQuantity = null;
 
 	useEffect(() => {
 		async function getCountriesFromApi() {
 			const countriesPerPage = 12;
 			const { pagesQuantity: pgQuantity } = await getCountries(currentPage, countriesPerPage);
 
-			setPagesQuantity(Math.ceil(pgQuantity / countriesPerPage));
+			pagesQuantity = Math.ceil(pgQuantity / countriesPerPage);
 		}
 		getCountriesFromApi();
-	}, []);
+	}, [currentPage]);
 
 	return (
 		<Container>
