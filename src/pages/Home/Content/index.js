@@ -4,14 +4,17 @@ import getCountries from '../../../services/api';
 
 import Country from '../../../components/Country';
 
-import Container from './styles';
+import Container, { Loading } from './styles';
 
 const Content = ({ currentPage }) => {
 	const [countries, setCountries] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		async function getCountriesFromApi() {
+			setLoading(true);
+			setCountries([]);
+
 			const countriesPerPage = 12;
 			const { res } = await getCountries(currentPage, countriesPerPage);
 
@@ -22,21 +25,21 @@ const Content = ({ currentPage }) => {
 	}, [currentPage]);
 
 	return (
-		<Container>
-			{loading && (
-				<span style={{ textAlign: 'center' }}>Loading...</span>
-			)}
-			{countries.map((country) => (
-				<Country
-					key={country.name}
-					flag={country.flag}
-					name={country.name}
-					population={country.population}
-					region={country.region}
-					capital={country.capital}
-				/>
-			))}
-		</Container>
+		<>
+			{loading && <Loading>Loading...</Loading>}
+			<Container>
+				{countries.map((country) => (
+					<Country
+						key={country.name}
+						flag={country.flag}
+						name={country.name}
+						population={country.population}
+						region={country.region}
+						capital={country.capital}
+					/>
+				))}
+			</Container>
+		</>
 	);
 };
 
