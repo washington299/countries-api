@@ -1,49 +1,53 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 
 import getCountries from '../../../services/api';
 
 import Container from './styles';
 
-const Pagination = ({ currentPage }) => {
-	const pages = [1, 2, 3, 4, 5, 6];
-	let pagesQuantity = null;
+const Pagination = ({ setCountries }) => {
+	const [pagesQuantity, setPagesQuantity] = useState(null);
+	const [offset, setOffset] = useState(0);
+	const countriesPerPage = 12;
 
 	useEffect(() => {
 		async function getCountriesFromApi() {
-			const countriesPerPage = 12;
-			const { pagesQuantity: pgQuantity } = await getCountries(currentPage, countriesPerPage);
+			setCountries([]);
+			const { res: countries, countriesQuantity } = await getCountries(offset, countriesPerPage);
 
-			pagesQuantity = Math.ceil(pgQuantity / countriesPerPage);
+			setCountries(countries);
+			setPagesQuantity(Math.ceil(countriesQuantity / countriesPerPage));
 		}
+
 		getCountriesFromApi();
-	}, [currentPage]);
+	}, [offset]);
+
+	const handlePageChange = async (data) => {
+		const { selected } = data;
+		setOffset(Math.ceil(selected * countriesPerPage));
+	};
 
 	return (
 		<Container>
-			<Link
-				to={`?page=${currentPage - 1}`}
-				style={currentPage === 1 ? { pointerEvents: 'none' } : {}}
-			>
-				prev
-			</Link>
-
-			{pages.map((page) => (
-				<Link
-					key={page}
-					to={`?page=${page}`}
-					active={`${page === currentPage}`}
-				>
-					{page}
-				</Link>
-			))}
-
-			<Link
-				to={`?page=${currentPage + 1}`}
-				disabled={currentPage === pagesQuantity ? { pointerEvents: 'none' } : {}}
-			>
-				next
-			</Link>
+			<ReactPaginate
+				previousLabel="prev"
+				nextLabel="next"
+				pageCount={pagesQuantity}
+				initialPage={offset}
+				marginPagesDisplayed={0}
+				pageRangeDisplayed={5}
+				onPageChange={handlePageChange}
+				containerClassName="container"
+				pageClassName="page"
+				pageLinkClassName="pageLink"
+				activeClassName="active"
+				activeLinkClassName="activeLink"
+				previousClassName="previous"
+				nextClassName="next"
+				previousLinkClassName="previousLink"
+				nextLinkClassName="nextLink"
+				disabledClassName="disabled"
+			/>
 		</Container>
 	);
 };

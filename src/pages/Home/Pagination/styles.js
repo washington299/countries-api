@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export default styled.div.attrs(() => ({
 	className: 'wrapper',
@@ -7,18 +7,21 @@ export default styled.div.attrs(() => ({
 	display: flex;
 	justify-content: center;
 
-	a {
-		${(props) => props.active && css`
-			color: ${() => props.theme.background} !important;
-			background-color: ${() => props.theme.activeBackground} !important;
-			font-weight: var(--font-weight-extra-bold);
-		`}
+	ul {
+		display: flex;
+	}
 
-		padding: 6px 12px;
-		font-size: 12px;
-		color: ${(props) => props.theme.text};
-		background-color: ${(props) => props.theme.background};
+	.active {
+		color: ${(props) => props.theme.background};
+		background-color: ${(props) => props.theme.activeBackground};
+		font-weight: var(--font-weight-extra-bold);
+	}
+
+	.pageLink,
+	.previousLink,
+	.nextLink {
 		border: 1px solid #AAA;
+		font-size: 12px;
 		text-decoration: none;
 		cursor: pointer;
 
