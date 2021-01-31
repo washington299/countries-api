@@ -10,12 +10,10 @@ const getAllCountries = async () => {
 	return res;
 };
 
-export default async (currentPage, countriesPerPage) => {
-	const startQuantityFrom = (currentPage - 1) * countriesPerPage;
-	const getQuantityUntil = currentPage * 12;
-
+export default async (offset, limit) => {
 	const countries = await getAllCountries();
-	const pagesQuantity = countries.data.length;
-	const res = countries.data.slice(startQuantityFrom, getQuantityUntil);
-	return { res, pagesQuantity };
+	const countriesQuantity = countries.data.length;
+	const res = countries.data.slice(offset, limit + offset);
+
+	return { res, countriesQuantity };
 };
