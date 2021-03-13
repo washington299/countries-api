@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { ThemeProvider } from 'styled-components';
+import React, { useState, useEffect } from "react";
+import { ThemeProvider } from "styled-components";
 
-import Routers from './routes';
+import Routers from "./routes";
 
-import ThemeContext from './contexts/themes';
-import themes from './styles/themes';
+import ThemeContext from "./contexts/themes";
+import themes from "./styles/themes";
 
-import GlobalStyles from './styles/globalStyles';
+import GlobalStyles from "./styles/globalStyles";
 
 const App = () => {
 	const [theme, setTheme] = useState(themes.light);
@@ -15,18 +15,14 @@ const App = () => {
 		setTheme(theme === themes.dark ? themes.light : themes.dark);
 
 		if (theme === themes.dark) {
-			localStorage.setItem('theme', 'light');
+			localStorage.setItem("theme", "light");
 		} else {
-			localStorage.setItem('theme', 'dark');
+			localStorage.setItem("theme", "dark");
 		}
 	}
 
 	useEffect(() => {
-		setTheme(
-			localStorage.getItem('theme') === 'light'
-				? themes.light
-				: themes.dark,
-		);
+		setTheme(localStorage.getItem("theme") === "light" ? themes.light : themes.dark);
 	}, [theme]);
 
 	return (

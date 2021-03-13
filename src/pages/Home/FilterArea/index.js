@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, ExpandMore } from '@material-ui/icons';
+import React, { useState } from "react";
+import { Search, ExpandMore } from "@material-ui/icons";
 
 import Container, {
 	Input,
@@ -9,11 +9,11 @@ import Container, {
 	RegionField,
 	SearchField,
 	Select,
-} from './styles';
+} from "./styles";
 
 const FilterArea = () => {
 	const [hide, setHide] = useState(true);
-	const [text, setText] = useState('Filter by Region');
+	const [text, setText] = useState("Filter by Region");
 
 	function handleClick() {
 		setHide(!hide);
@@ -37,10 +37,7 @@ const FilterArea = () => {
 				</Select>
 				{!hide && (
 					<OptionsBox>
-						<Option
-							style={{ marginBottom: 10 }}
-							onClick={changeOption}
-						>
+						<Option style={{ marginBottom: 10 }} onClick={changeOption}>
 							Filter by Region
 						</Option>
 						<Option onClick={changeOption}>Africa</Option>

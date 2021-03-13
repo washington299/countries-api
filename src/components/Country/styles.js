@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default styled.article`
 	height: auto;
-	background-color: ${(props) => props.theme.element};
-  border-radius: 5px;
-	box-shadow: 0px 0px 10px ${(props) => props.theme.shadow};
+	background-color: ${props => props.theme.element};
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px ${props => props.theme.shadow};
 `;
 
 export const Flag = styled.img`

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default styled.div`
 	display: flex;
@@ -17,25 +17,25 @@ export const SearchField = styled.div`
 	height: 40px;
 	display: flex;
 	align-items: center;
-	background-color: ${(props) => props.theme.element};
+	background-color: ${props => props.theme.element};
 	margin-bottom: 20px;
 	border-radius: 5px;
-	box-shadow: 0px 0px 10px ${(props) => props.theme.shadow};
+	box-shadow: 0px 0px 10px ${props => props.theme.shadow};
 
 	svg {
 		font-size: 21px;
 		margin: 0 20px;
-		color: ${(props) => props.theme.text};
+		color: ${props => props.theme.text};
 	}
 `;
 
 export const Input = styled.input.attrs(() => ({
-	placeholder: 'Search for a country...',
+	placeholder: "Search for a country...",
 }))`
 	height: 100%;
 	flex: 1;
-	background-color: ${(props) => props.theme.element};
-	color: ${(props) => props.theme.text};
+	background-color: ${props => props.theme.element};
+	color: ${props => props.theme.text};
 	font-size: calc(var(--font-size-small) - 1px);
 	padding: 0 5px;
 	border: none;
@@ -60,11 +60,11 @@ export const Select = styled.div`
 	display: flex;
 	align-items: center;
 	padding: 0 20px;
-	background-color: ${(props) => props.theme.element};
-	color: ${(props) => props.theme.text};
+	background-color: ${props => props.theme.element};
+	color: ${props => props.theme.text};
 	border: none;
 	border-radius: 5px;
-	box-shadow: 0px 0px 10px ${(props) => props.theme.shadow};
+	box-shadow: 0px 0px 10px ${props => props.theme.shadow};
 	cursor: pointer;
 
 	svg {
@@ -85,11 +85,11 @@ export const OptionsBox = styled.div`
 	height: auto;
 	margin-top: 4px;
 	padding: 10px 0;
-	background-color: ${(props) => props.theme.element};
-	color: ${(props) => props.theme.text};
+	background-color: ${props => props.theme.element};
+	color: ${props => props.theme.text};
 	border: none;
 	border-radius: 5px;
-	box-shadow: 0px 0px 10px ${(props) => props.theme.shadow};
+	box-shadow: 0px 0px 10px ${props => props.theme.shadow};
 	position: absolute;
 `;
 
@@ -101,6 +101,6 @@ export const Option = styled.div`
 	cursor: pointer;
 
 	:hover {
-		background-color: ${(props) => props.theme.background};
+		background-color: ${props => props.theme.background};
 	}
 `;

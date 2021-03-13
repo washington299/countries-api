@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // import { useLocation } from 'react-router-dom';
 
-import FilterArea from './FilterArea';
-import Content from './Content';
-import Pagination from './Pagination';
+import FilterArea from "./FilterArea";
+import Content from "./Content";
+import Pagination from "./Pagination";
 
-import Container from './styles';
+import Container from "./styles";
 
 // const useQuery = () => new URLSearchParams(useLocation().search);
 

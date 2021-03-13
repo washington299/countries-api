@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 	* {
@@ -9,8 +9,8 @@ export default createGlobalStyle`
 
 	body {
 		font-family: 'Nunito Sans', sans-serif;
-		background-color: ${(props) => props.theme.background};
-		color: ${(props) => props.theme.text};
+		background-color: ${props => props.theme.background};
+		color: ${props => props.theme.text};
 	}
 
 	:root {

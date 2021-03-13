@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 
-import getCountries from '../../../services/api';
+import getCountries from "../../../services/api";
 
-import Container from './styles';
+import Container from "./styles";
 
 const Pagination = ({ setCountries }) => {
 	const [pagesQuantity, setPagesQuantity] = useState(null);
@@ -22,7 +22,7 @@ const Pagination = ({ setCountries }) => {
 		getCountriesFromApi();
 	}, [offset]);
 
-	const handlePageChange = async (data) => {
+	const handlePageChange = async data => {
 		const { selected } = data;
 		setOffset(Math.ceil(selected * countriesPerPage));
 	};

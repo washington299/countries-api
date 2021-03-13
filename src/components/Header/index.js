@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import ThemeTogglerButton from '../ThemeTogglerButton';
+import ThemeTogglerButton from "../ThemeTogglerButton";
 
-import Container, { Title } from './styles';
+import Container, { Title } from "./styles";
 
 const Header = () => (
 	<Container>

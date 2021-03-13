@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { WbSunny, NightsStay } from '@material-ui/icons';
+import React, { useContext } from "react";
+import { WbSunny, NightsStay } from "@material-ui/icons";
 
-import ThemeContext from '../../contexts/themes';
-import themes from '../../styles/themes';
+import ThemeContext from "../../contexts/themes";
+import themes from "../../styles/themes";
 
-import Container from './styles';
+import Container from "./styles";
 
 function ThemeTogglerButton() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
@@ -18,7 +18,7 @@ function ThemeTogglerButton() {
 				</>
 			) : (
 				<>
-					<WbSunny style={{ color: '#FECE00' }} />
+					<WbSunny style={{ color: "#FECE00" }} />
 					<span>Light mode</span>
 				</>
 			)}

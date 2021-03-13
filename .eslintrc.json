@@ -1,34 +1,29 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "react/jsx-filename-extension": "off",
-        "react/jsx-indent": "off",
-        "react/prefer-stateless-function": "off",
-        "react/no-unused-state": "off",
-        "react/destructuring-assignment": "off",
-        "react/jsx-indent-props": "off",
-        "react/jsx-props-no-spreading": "off",
-        "react/forbid-prop-types": "off",
-        "react/prop-types": "off",
-        "no-tabs": "off",
-        "indent": ["error", "tab"],
-        "radix": "off"
-    }
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": ["react", "prettier"],
+	"rules": {
+		"react/jsx-filename-extension": "off",
+		"react/jsx-indent": "off",
+		"react/prefer-stateless-function": "off",
+		"react/no-unused-state": "off",
+		"react/destructuring-assignment": "off",
+		"react/jsx-indent-props": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/forbid-prop-types": "off",
+		"react/prop-types": "off",
+		"no-tabs": "off",
+		"indent": ["error", "tab"],
+		"radix": "off"
+	}
 }
