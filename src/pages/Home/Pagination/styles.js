@@ -17,10 +17,20 @@ export default styled.div.attrs(() => ({
 		font-weight: var(--font-weight-extra-bold);
 	}
 
-	.pageLink,
-	.previousLink,
-	.nextLink {
-		border: 1px solid #aaa;
+	.disabled {
+		pointer-events: none;
+	}
+	.container {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.previous,
+	.next,
+	.break,
+	.page {
+		display: flex;
+		border: 1px solid ${props => props.theme.activeBackground};
 		font-size: 12px;
 		text-decoration: none;
 		cursor: pointer;
@@ -31,5 +41,12 @@ export default styled.div.attrs(() => ({
 			font-weight: var(--font-weight-extra-bold);
 			border: none;
 		}
+	}
+	.pageLink,
+	.previousLink,
+	.break,
+	.nextLink {
+		outline: none;
+		padding: 6px 12px;
 	}
 `;
