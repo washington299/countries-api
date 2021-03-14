@@ -1,6 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
-
-import { CountriesContext } from "../../contexts/countries";
+import React, { useEffect, useState } from "react";
 
 import FilterArea from "./FilterArea";
 import Content from "./Content";
@@ -9,8 +7,6 @@ import Pagination from "./Pagination";
 import Container from "./styles";
 
 const Home = () => {
-	const { countries } = useContext(CountriesContext);
-
 	const [countriesPaginated, setCountriesPaginated] = useState([]);
 
 	useEffect(() => window.scrollTo(0, 0), []);
@@ -19,7 +15,7 @@ const Home = () => {
 		<Container>
 			<FilterArea />
 			<Content countriesPaginated={countriesPaginated} />
-			<Pagination countries={countries} setCountriesPaginated={setCountriesPaginated} />
+			<Pagination setCountriesPaginated={setCountriesPaginated} />
 		</Container>
 	);
 };

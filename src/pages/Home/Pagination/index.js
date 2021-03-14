@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 import { filterCountriesPerPage } from "../../../services/api";
 
+import { CountriesContext } from "../../../contexts/countries";
+
 import Container from "./styles";
 
-const Pagination = ({ countries, setCountriesPaginated }) => {
+const Pagination = ({ setCountriesPaginated }) => {
+	const { countries } = useContext(CountriesContext);
+
 	const [pagesQuantity, setPagesQuantity] = useState(null);
 	const [offset, setOffset] = useState(0);
 	const countriesPerPage = 12;
