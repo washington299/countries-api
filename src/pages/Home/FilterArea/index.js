@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Search, ExpandMore } from "@material-ui/icons";
+
+import { CountriesContext } from "../../../contexts/countries";
 
 import Container, {
 	Input,
@@ -11,10 +13,21 @@ import Container, {
 	Select,
 } from "./styles";
 
-const FilterArea = () => {
+const FilterArea = ({ setCountriesFiltered }) => {
+	const { countries } = useContext(CountriesContext);
+
 	const [inputText, setInputText] = useState("");
 	const [hide, setHide] = useState(true);
 	const [selectText, setSelectText] = useState("Filter by Region");
+
+	useEffect(() => {
+		setTimeout(() => {
+			const countriesFiltered = countries.filter(country =>
+				country.name.toLowerCase().includes(inputText),
+			);
+			setCountriesFiltered(countriesFiltered);
+		}, 1500);
+	}, [inputText]);
 
 	function handleClick() {
 		setHide(!hide);

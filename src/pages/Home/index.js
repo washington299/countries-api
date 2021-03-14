@@ -8,13 +8,14 @@ import Container from "./styles";
 
 const Home = () => {
 	const [countriesPaginated, setCountriesPaginated] = useState([]);
+	const [countriesFiltered, setCountriesFiltered] = useState([]);
 
 	useEffect(() => window.scrollTo(0, 0), []);
 
 	return (
 		<Container>
-			<FilterArea />
-			<Content countriesPaginated={countriesPaginated} />
+			<FilterArea setCountriesFiltered={setCountriesFiltered} />
+			<Content countriesPaginated={countriesPaginated} countriesFiltered={countriesFiltered} />
 			<Pagination setCountriesPaginated={setCountriesPaginated} />
 		</Container>
 	);
