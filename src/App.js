@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 
 import Routers from "./routes";
 
+import CountriesProvider from "./contexts/countries";
 import ThemeContext from "./contexts/themes";
 import themes from "./styles/themes";
 
@@ -27,10 +28,12 @@ const App = () => {
 
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
-			<ThemeProvider theme={theme}>
-				<GlobalStyles />
-				<Routers />
-			</ThemeProvider>
+			<CountriesProvider>
+				<ThemeProvider theme={theme}>
+					<GlobalStyles />
+					<Routers />
+				</ThemeProvider>
+			</CountriesProvider>
 		</ThemeContext.Provider>
 	);
 };

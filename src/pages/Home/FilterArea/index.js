@@ -12,8 +12,9 @@ import Container, {
 } from "./styles";
 
 const FilterArea = () => {
+	const [inputText, setInputText] = useState("");
 	const [hide, setHide] = useState(true);
-	const [text, setText] = useState("Filter by Region");
+	const [selectText, setSelectText] = useState("Filter by Region");
 
 	function handleClick() {
 		setHide(!hide);
@@ -21,18 +22,22 @@ const FilterArea = () => {
 
 	function changeOption(e) {
 		handleClick();
-		setText(e.target.innerHTML);
+		setSelectText(e.target.innerHTML);
+	}
+
+	function handleInputChange(e) {
+		setInputText(e.target.value);
 	}
 
 	return (
 		<Container>
 			<SearchField>
 				<Search />
-				<Input />
+				<Input value={inputText} onChange={handleInputChange} />
 			</SearchField>
 			<RegionField>
 				<Select onClick={handleClick}>
-					<RegionDefaultText>{text}</RegionDefaultText>
+					<RegionDefaultText>{selectText}</RegionDefaultText>
 					<ExpandMore />
 				</Select>
 				{!hide && (
