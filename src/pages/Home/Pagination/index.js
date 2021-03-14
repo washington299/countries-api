@@ -31,7 +31,7 @@ const Pagination = ({ setCountries }) => {
 		<Container>
 			<ReactPaginate
 				pageCount={pagesQuantity}
-				initialPage={offset === 0 && 1}
+				initialPage={offset}
 				previousLabel="prev"
 				nextLabel="next"
 				marginPagesDisplayed={1}
