@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
-import getCountries from "../../../services/api";
+import { filterCountriesPerPage } from "../../../services/api";
+
+import { CountriesContext } from "../../../contexts/countries";
 
 import Container from "./styles";
 
-const Pagination = ({ setCountries }) => {
+const Pagination = ({ setCountriesPaginated }) => {
+	const { countries } = useContext(CountriesContext);
+
 	const [pagesQuantity, setPagesQuantity] = useState(null);
 	const [offset, setOffset] = useState(0);
 	const countriesPerPage = 12;
 
 	useEffect(() => {
-		async function getCountriesFromApi() {
-			setCountries([]);
-			const { res: countries, countriesQuantity } = await getCountries(offset, countriesPerPage);
+		setCountriesPaginated([]);
+		const { countriesPaginated, countriesQuantity } = filterCountriesPerPage(
+			countries,
+			offset,
+			countriesPerPage,
+		);
 
-			setCountries(countries);
-			setPagesQuantity(Math.ceil(countriesQuantity / countriesPerPage));
-		}
-
-		getCountriesFromApi();
-	}, [offset]);
+		setCountriesPaginated(countriesPaginated);
+		setPagesQuantity(Math.ceil(countriesQuantity / countriesPerPage));
+	}, [countries, offset]);
 
 	const handlePageChange = async data => {
 		const { selected } = data;

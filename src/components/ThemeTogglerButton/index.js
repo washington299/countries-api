@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { WbSunny, NightsStay } from "@material-ui/icons";
 
-import ThemeContext from "../../contexts/themes";
+import { ThemeContext } from "../../contexts/themes";
 import themes from "../../styles/themes";
 
 import Container from "./styles";
